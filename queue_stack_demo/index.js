@@ -4,9 +4,13 @@ function createStack() {
     return {
         //get top element from stack
         pop: function () {
-            let el = container[index--];
-            container.length--;
-            return el;
+            if (container.length > 0) {
+                let el = container[index--];
+                container.length--;
+                return el;
+            }else {
+                return undefined;
+            }
         },
         // add element in stack from tail
         push: function (element) {
