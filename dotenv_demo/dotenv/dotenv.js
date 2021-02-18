@@ -3,8 +3,8 @@ const fs = require('fs')
 
 function config() {
     let data = fs.readFileSync('././.env', 'utf8')
-    let lines = data.split('\n').filter(isValid);
-    lines
+    data.split('\n')
+        .filter(isValid)
         .map(parse)
         .forEach(initEnvVariables)
 }
