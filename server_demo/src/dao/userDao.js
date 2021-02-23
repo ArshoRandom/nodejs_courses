@@ -34,7 +34,12 @@ function deleteUserById(id) {
 }
 
 function updateUser(data) {
-    let id = JSON.parse(data)['id']
+    let id;
+    if (typeof data !== 'object'){
+        id = JSON.parse(data)['id']
+    }else {
+        id = data['id']
+    }
     if (deleteUserById(id)){
         createUser(data);
         return true;
