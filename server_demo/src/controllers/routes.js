@@ -8,7 +8,7 @@ Add new router in route-map using regexp-key and action-value
 const routes = new Map()
 
 //Get user by id route
-routes.set(/user[/][\d+]/, function (req, url_path) {
+routes.set(/api[/]v1[/]users[/][\d+]/, function (req, url_path) {
     return new Promise((resolve, reject) => {
         if (req.method === 'GET') {
             let id = Number(urlParser.getPatchVariable(req.url));
@@ -21,7 +21,7 @@ routes.set(/user[/][\d+]/, function (req, url_path) {
 });
 
 //Get all users route
-routes.set(/[/]users/, function (req, url_path) {
+routes.set(/api[/]v1[/]users/, function (req, url_path) {
     return new Promise((resolve, reject) => {
         if (req.method === 'GET') {
             resolve(JSON.stringify(userService.getUsers()));
@@ -33,7 +33,7 @@ routes.set(/[/]users/, function (req, url_path) {
 })
 
 //Query string route
-routes.set(/user[?].+/, function (req,url_path) {
+routes.set(/api[/]v1[/]users[?].+/, function (req,url_path) {
     return new Promise((resolve, reject) => {
         if (req.method === 'GET') {
             let name = urlParser.getQueryParam(url_path, 'name');
@@ -62,7 +62,7 @@ routes.set(/^[/]$/, function (req, url_path) {
 })
 
 //Add user route
-routes.set(/[/]user[/]add/, function (req, url_path) {
+routes.set(/api[/]v1[/]users[/]add/, function (req, url_path) {
     return new Promise((resolve, reject) => {
         if (req.method === 'POST') {
             req.on('data', (body) => {
@@ -80,7 +80,7 @@ routes.set(/[/]user[/]add/, function (req, url_path) {
 })
 
 //Delete user route
-routes.set(/user[/]delete[/][\d+]/, function (req, url_path) {
+routes.set(/api[/]v1[/]users[/]delete[/][\d+]/, function (req, url_path) {
     return new Promise((resolve, reject) => {
         if (req.method === 'DELETE') {
             let id = Number(urlParser.getPatchVariable(req.url));
@@ -98,7 +98,7 @@ routes.set(/user[/]delete[/][\d+]/, function (req, url_path) {
 })
 
 //Update user route
-routes.set(/[/]user[/]update/, function (req, url_path) {
+routes.set(/api[/]v1[/]users[/]update/, function (req, url_path) {
     return new Promise((resolve, reject) => {
         if (req.method === 'PUT') {
             req.on('data', (body) => {
