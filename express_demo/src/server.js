@@ -13,5 +13,4 @@ controller.dispatch(app)
 app.listen(process.env.PORT || 3000, () => {
     userCache.loadData();
     console.log('Server running');
-
 })

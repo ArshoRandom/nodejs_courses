@@ -1,14 +1,16 @@
 const userService = require('../service/userService')
 
+const base_url = '/api/v1/'
+
 function dispatch(server) {
     /*GET routes*/
     server.get('/', (req,res) => {
         res.status(200).send('Welcome');
     });
-    server.get('/users', (req,res) => {
+    server.get(`${base_url}users`, (req,res) => {
         res.status(200).send(JSON.stringify(userService.getUsers()));
     });
-    server.get('/user/:id', (req,res) =>{
+    server.get(`${base_url}users/:id`, (req,res) =>{
         let user = userService.getUserById(Number(req.params.id));
         if (user){
             res.status(200).send(user)
@@ -16,7 +18,7 @@ function dispatch(server) {
             res.status(400).send('User not found')
         }
     });
-    server.get('/user', (req,res) =>{
+    server.get(`${base_url}users`, (req,res) =>{
         let name = req.query.name;
         let search = req.query.search;
         if (name){
@@ -29,7 +31,7 @@ function dispatch(server) {
     });
 
     /*POST routes*/
-    server.post('/user/add', (req,res) => {
+    server.post(`${base_url}users/add`, (req,res) => {
         if (userService.addUser(req.body))
             res.status(200).send('User successfully added');
         else
@@ -37,7 +39,7 @@ function dispatch(server) {
     });
 
     /*DELETE routes*/
-    server.delete('/user/delete/:id', (req,res) => {
+    server.delete(`${base_url}users/delete/:id`, (req,res) => {
         if (userService.removeUserById(Number(req.params.id)))
             res.status(200).send('User successfully removed');
         else
@@ -45,7 +47,7 @@ function dispatch(server) {
     });
 
     /*PUT routes*/
-    server.put('/user/update', (req,res) => {
+    server.put(`${base_url}users/update`, (req,res) => {
         if (userService.updateUser(req.body))
             res.status(200).send('User successfully updated');
         else

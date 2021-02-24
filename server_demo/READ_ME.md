@@ -4,9 +4,9 @@ PORT=<port number>
 
                                       ENDPOINTS
 
-/users - get all users {HTTP-GET}
+/api/v1/users - get all users {HTTP-GET}
 *************************
-/user/add - add new user {HTTP-POST}
+/api/v1/users/add - add new user {HTTP-POST}
 format example
 {       
 "id":411,
@@ -16,15 +16,15 @@ format example
 "password":"pass12345"
 }
 *************************
-/user?name=<name> - search by name {HTTP-GET}
+/api/v1/users?name=<name> - search by name {HTTP-GET}
 *************************
-/user/<id> - get by id {HTTP-GET}
+/api/v1/users/<id> - get by id {HTTP-GET}
 *************************
-/user?search=<search_chunk> - search by name and surname partial matching {HTTP-GET}
+/api/v1/users?search=<search_chunk> - search by name and surname partial matching {HTTP-GET}
 *************************
-/user/delete/<id> - delete user by id {HTTP-DELETE}
+/api/v1/users/delete/<id> - delete user by id {HTTP-DELETE}
 *************************
-/user/update - update user by id {HTTP-PUT}
+/api/v1/users/update - update user by id {HTTP-PUT}
 updated data format
 {       
 "id":411,
