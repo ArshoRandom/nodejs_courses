@@ -5,10 +5,12 @@ const controller = require('./controllers/controller');
 const userCache = require('../src/util/userCache')
 
 const app = express();
+const base_url = '/api/v1/users'
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
-controller.dispatch(app)
+app.use(base_url,controller)
 
 app.listen(process.env.PORT || 3000, () => {
     userCache.loadData();
